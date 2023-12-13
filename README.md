@@ -1,4 +1,4 @@
-# SQL_Project
+# SQL Project
 
 ## Hi there! My name is Nnamdi Leonard and you are welcome to view this project. Enjoy! 
 
@@ -11,7 +11,7 @@ The aim is to report findings about transactions or records from company's store
 
 ## Project Overview
 
-### Task 1: This consist of three seperate queries to constitute the >Product Sales Information.
+### Task 1: This consist of three seperate queries to constitute the `Product Sales Information.`
 Request: Retrieve information about the products with colour values except null, red, silver/black, white and list price between
 £75 and £750. Rename the column StandardCost to Price. Also, sort the results in descending order by list price.
 
@@ -40,5 +40,5 @@ FROM Production.Product
 WHERE ProductNumber LIKE 'BK%'
 ORDER BY ListPrice DESC;
 
-[Here is a pictorial representation]()
+[Here is a pictorial representation](SQL_Project/Picture2.png)
 
