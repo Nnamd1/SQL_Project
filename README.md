@@ -40,6 +40,7 @@ FROM Production.Product
 WHERE ProductNumber LIKE 'BK%'
 ORDER BY ListPrice DESC;
 
-[Here is a pictorial representation](Picture2.png)
+[Here is a pictorial representation](Picture2.png) 
+
 [To view the actual report file, click here](Product_Info.rdl)
 
