@@ -40,5 +40,5 @@ FROM Production.Product
 WHERE ProductNumber LIKE 'BK%'
 ORDER BY ListPrice DESC;
 
-[Here is a pictorial representation](SQL_Project/Picture2.png)
+[Here is a pictorial representation](Picture2.png)
 
