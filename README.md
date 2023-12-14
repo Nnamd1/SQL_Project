@@ -78,6 +78,6 @@ CONCAT(B.FirstName, ' ', B.LastName) Name, 65 - DATEDIFF(YEAR, A.BirthDate, GETD
 FROM HumanResources.Employee A
 INNER JOIN Person.Person B ON A.BusinessEntityID = B.BusinessEntityID;
 
-[Here is a pictorial representation of the report]()
+[Here is a pictorial representation of the report](Picture3.png)
 [To view the actual report file, click here]()
 
