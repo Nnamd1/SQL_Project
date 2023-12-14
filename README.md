@@ -7,7 +7,7 @@
 This project depicts knowledge in the use of the structural query language (SQL) with the use of an SQL Server Reporting Service (SSRS)). It intends to show how I correctly translate enquiries and instructions from the team lead/manager (who for the sake of this project, we'll call Sam) into SQL statements in order to retrieve the desired data. These enquiries are broken into tasks and then segmented according to area of request. AdventureWorks2019 dataset was used for this project as a simulation.
 
 ## Goal of this Project
-The aim is to report findings about transactions or records from company's stored data upon request, in order to solve a problem or reach a decision.
+The aim is to show the report page of transactions or records from company's stored data upon request, in order to solve a problem or reach a decision which is not discussed in this project.
 
 ## Project Overview
 
@@ -178,4 +178,6 @@ GROUP BY A.CustomerID, A.SalesPersonID, B.CommissionPct, A.SalesOrderNumber, A.O
 [Here is a pictorial representation of the report](Picture8.png)
 
 To view the actual report file, [click here](orders_sales.rdl)
+
+Thank you for your time!
 
