@@ -152,5 +152,5 @@ WHERE Row_num <= 5;
 
 [Here is a pictorial representation of the report](Picture7.png)
 
-To view the actual report file, [click here](Product Pricing.rdl)
+To view the actual report file, [click here](Product_Pricing.rdl)
 
