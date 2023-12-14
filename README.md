@@ -92,12 +92,14 @@ full name.
 
 Query: 
 -- List of contact persons whose first 4 characters of their last name = first four characters of their email
+
 SELECT A.Title, CONCAT(A.LastName, ' ', A.FirstName) Full_Name, B.EmailAddress, A.BusinessEntityID
 FROM Person.Person A
 INNER JOIN Person.EmailAddress B ON A.BusinessEntityID = B.BusinessEntityID
 WHERE LEFT(A.LastName, 4) = LEFT(B.EmailAddress, 4);
 
 -- list of all contacts whose first name and the last name begin with the same characters
+
 SELECT CONCAT(A.FirstName, ' ', A.LastName) Full_Name, LEN(CONCAT(A.FirstName, ' ', A.LastName)) Length
 FROM Person.Person A
 INNER JOIN Person.EmailAddress B ON A.BusinessEntityID = B.BusinessEntityID
@@ -148,7 +150,7 @@ FROM Production.Product --used on builder
 ) A
 WHERE Row_num <= 5;
 
-[Here is a pictorial representation of the report]()
+[Here is a pictorial representation of the report](Picture7.png)
 
-To view the actual report file, [click here]()
+To view the actual report file, [click here](Product Pricing.rdl)
 
