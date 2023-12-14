@@ -11,7 +11,7 @@ The aim is to report findings about transactions or records from company's store
 
 ## Project Overview
 
-### Task 1: This consist of three seperate queries to constitute the `Product Sales Information.`
+### Task 1: This consist of three unique queries in response to requests, in order to constitute the report called `Product Sales Information.`
 Request: Retrieve information about the products with colour values except null, red, silver/black, white and list price between
 £75 and £750. Rename the column StandardCost to Price. Also, sort the results in descending order by list price.
 
@@ -43,4 +43,41 @@ ORDER BY ListPrice DESC;
 [Here is a pictorial representation](Picture2.png) 
 
 [To view the actual report file, click here](Product_Info.rdl)
+
+### Task 2: This consist of four unique queries in response to requests, in order to constitute the report called `Employee Details.`
+Request: Find all the male employees born between 1962 to 1970 and with hire date greater than 2001 and female employees
+born between 1972 and 1975 and hire date between 2001 and 2002.
+
+Query: SELECT NationalIDNumber, Gender, YEAR(BirthDate) Birth_Year, YEAR(HireDate) Year_Hired
+FROM HumanResources.Employee
+WHERE Gender = 'M'
+AND YEAR(BirthDate) BETWEEN 1962 AND 1970
+AND YEAR(HireDate) > 2001
+UNION ALL
+SELECT NationalIDNumber, Gender, YEAR(BirthDate) Birth_Year, YEAR(HireDate) Year_Hired
+FROM HumanResources.Employee
+WHERE Gender = 'F'
+AND YEAR(BirthDate) BETWEEN 1972 AND 1975 
+AND YEAR(HireDate) BETWEEN 2001 AND 2002;
+
+Request: Use employee table and calculate the ages of each employee at the time of hiring.
+
+Query: SELECT NationalIDNumber, JobTitle, BirthDate, HireDate, DATEDIFF(YEAR, BirthDate, HireDate) Age
+FROM HumanResources.Employee;
+
+Request: How many employees will be due a long service award in the next 5 years, if long service is 20 years?
+
+Query: SELECT COUNT(BusinessEntityID) Long_Service_Eligibility_Count
+FROM HumanResources.Employee
+WHERE DATEDIFF(YEAR, HireDate, GETDATE()) >= 15;
+
+Request: How many more years does each employee have to work before reaching sentiment, if sentiment age is 65?
+
+Query: SELECT A.NationalIDNumber, 
+CONCAT(B.FirstName, ' ', B.LastName) Name, 65 - DATEDIFF(YEAR, A.BirthDate, GETDATE()) Years_ToReach_Sentiment
+FROM HumanResources.Employee A
+INNER JOIN Person.Person B ON A.BusinessEntityID = B.BusinessEntityID;
+
+[Here is a pictorial representation of the report]()
+[To view the actual report file, click here]()
 
