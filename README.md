@@ -44,6 +44,7 @@ ORDER BY ListPrice DESC;
 
 To view the actual report file, [click here](Product_Info.rdl)
 
+
 ### Task 2: This consist of four unique queries in response to requests, in order to constitute the report called `Employee Details.`
 Request: Find all the male employees born between 1962 to 1970 and with hire date greater than 2001 and female employees
 born between 1972 and 1975 and hire date between 2001 and 2002.
@@ -79,5 +80,31 @@ FROM HumanResources.Employee A
 INNER JOIN Person.Person B ON A.BusinessEntityID = B.BusinessEntityID;
 
 [Here is a pictorial representation of the report](Picture3.png)
+
 To view the actual report file, [click here](Employee.rdl)
+
+
+### Task 3: This constitutes the report called `Customer Information.`
+Request: Create a list of all contact persons, where the first 4 characters of the last name are the same asthe first four characters
+of the email address. Also, for all contacts whose first name and the last name begin with the same characters, create
+a new column called full name combining first name and the last name only. Also provide the length ofthe new column
+full name.
+
+Query: 
+-- List of contact persons whose first 4 characters of their last name = first four characters of their email
+SELECT A.Title, CONCAT(A.LastName, ' ', A.FirstName) Full_Name, B.EmailAddress, A.BusinessEntityID
+FROM Person.Person A
+INNER JOIN Person.EmailAddress B ON A.BusinessEntityID = B.BusinessEntityID
+WHERE LEFT(A.LastName, 4) = LEFT(B.EmailAddress, 4);
+
+-- list of all contacts whose first name and the last name begin with the same characters
+SELECT CONCAT(A.FirstName, ' ', A.LastName) Full_Name, LEN(CONCAT(A.FirstName, ' ', A.LastName)) Length
+FROM Person.Person A
+INNER JOIN Person.EmailAddress B ON A.BusinessEntityID = B.BusinessEntityID
+WHERE LEFT(A.LastName, 4) = LEFT(B.EmailAddress, 4)
+AND LEFT(A.LastName, 1) = LEFT(A.FirstName, 1);
+
+[Here is a pictorial representation of the report]()
+
+To view the actual report file, [click here]()
 
