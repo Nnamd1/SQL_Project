@@ -106,5 +106,5 @@ AND LEFT(A.LastName, 1) = LEFT(A.FirstName, 1);
 
 [Here is a pictorial representation of the report]()
 
-To view the actual report file, [click here]()
+To view the actual report file, [click here](cust.rdl)
 
