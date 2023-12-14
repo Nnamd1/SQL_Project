@@ -110,6 +110,7 @@ AND LEFT(A.LastName, 1) = LEFT(A.FirstName, 1);
 
 To view the actual report file, [click here](cust.rdl)
 
+
 ### Task 4: This consist of unique queries in response to requests, in order to constitute the report called `Product Pricing and Subcategories.`
 Request: Implement new price policy on the product table base on the colour of the item
 If white increase price by 8%, If yellow reduce price by 7.5%, If black increase price by 17.2%. If multi, silver,
@@ -153,4 +154,28 @@ WHERE Row_num <= 5;
 [Here is a pictorial representation of the report](Picture7.png)
 
 To view the actual report file, [click here](Product_Pricing.rdl)
+
+
+### Task 4: This consist of unique queries in response to requests, in order to constitute the report called `Orders and Sales.`
+Request: Print the information about all the Sales.Person and their sales quota. For every Sales person you should provide their
+FirstName, LastName, HireDate, SickLeaveHours and Region where they work.
+
+Query: SELECT A.BusinessEntityID, B.FirstName, B.LastName, C.HireDate, A.SalesQuota, C.SickLeaveHours, E.Name Region
+FROM Sales.SalesPerson A
+INNER JOIN Person.Person B ON A.BusinessEntityID = B.BusinessEntityID
+INNER JOIN HumanResources.Employee C ON B.BusinessEntityID = C.BusinessEntityID
+INNER JOIN Sales.SalesTerritory D ON A.TerritoryID = D.TerritoryID
+INNER JOIN Person.CountryRegion E ON D.CountryRegionCode = E.CountryRegionCode
+
+Request: Display the information about the details of an order i.e. order number, order date, amount of order, which customer
+gives the order and which salesman works for that customer and how much commission he gets for an order
+
+Query: SELECT A.SalesOrderNumber, A.OrderDate, SUM(A.TotalDue) Amount, A.CustomerID, A.SalesPersonID, B.CommissionPct
+FROM Sales.SalesOrderHeader A
+INNER JOIN Sales.SalesPerson B ON A.TerritoryID = B.TerritoryID
+GROUP BY A.CustomerID, A.SalesPersonID, B.CommissionPct, A.SalesOrderNumber, A.OrderDate;
+
+[Here is a pictorial representation of the report](Picture8.png)
+
+To view the actual report file, [click here](orders_sales.rdl)
 
