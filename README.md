@@ -11,7 +11,7 @@ The aim is to report findings about transactions or records from company's store
 
 ## Project Overview
 
-### Task 1: This consist of three unique queries in response to requests, in order to constitute the report called `Product Sales Information.`
+### Task 1: This consist of unique queries in response to requests, in order to constitute the report called `Product Sales Information.`
 Request: Retrieve information about the products with colour values except null, red, silver/black, white and list price between
 £75 and £750. Rename the column StandardCost to Price. Also, sort the results in descending order by list price.
 
@@ -45,7 +45,7 @@ ORDER BY ListPrice DESC;
 To view the actual report file, [click here](Product_Info.rdl)
 
 
-### Task 2: This consist of four unique queries in response to requests, in order to constitute the report called `Employee Details.`
+### Task 2: This consist of unique queries in response to requests, in order to constitute the report called `Employee Details.`
 Request: Find all the male employees born between 1962 to 1970 and with hire date greater than 2001 and female employees
 born between 1972 and 1975 and hire date between 2001 and 2002.
 
@@ -104,7 +104,51 @@ INNER JOIN Person.EmailAddress B ON A.BusinessEntityID = B.BusinessEntityID
 WHERE LEFT(A.LastName, 4) = LEFT(B.EmailAddress, 4)
 AND LEFT(A.LastName, 1) = LEFT(A.FirstName, 1);
 
-[Here is a pictorial representation of the report]()
+[Here is a pictorial representation of the report](Picture6.png)
 
 To view the actual report file, [click here](cust.rdl)
+
+### Task 4: This consist of unique queries in response to requests, in order to constitute the report called `Product Pricing and Subcategories.`
+Request: Implement new price policy on the product table base on the colour of the item
+If white increase price by 8%, If yellow reduce price by 7.5%, If black increase price by 17.2%. If multi, silver,
+silver/black or blue take the square root of the price and double the value. Column should be called Newprice. For
+each item, also calculate commission as 37.5% of newly computed list price.
+
+Query: SELECT A.*, 0.375 * A.NewPrice AS Commission FROM 
+(SELECT ProductNumber, color, ListPrice, CASE WHEN Color = 'white' THEN ListPrice + (ListPrice * 0.08)
+WHEN Color = 'yellow' THEN ListPrice + (ListPrice * 0.075)
+WHEN Color = 'black' THEN ListPrice + (ListPrice * 0.172)
+WHEN Color IN ('multi', 'silver', 'silver/black', 'blue') THEN ListPrice + (SQRT(ListPrice)*2)
+ELSE ListPrice END NewPrice
+FROM Production.Product) AS A;
+
+Request:For all the products calculate
+1. Commission as 14.790% of standard cost,
+2. Margin, if standard cost is increased or decreased as follows:
+Black: +22%, Red: -12%, Silver: +15%, Multi: +5%, White: Two times original cost divided by the square root of cost
+For other colours, standard cost remains the same
+
+Query: SELECT ProductNumber, Name Product, StandardCost, (0.1479 * StandardCost) Commission, color,
+CASE WHEN Color = 'Black' THEN (StandardCost + (StandardCost * 0.22))
+WHEN Color = 'Red' THEN (StandardCost - (StandardCost * 0.12))
+WHEN Color = 'Silver' THEN (StandardCost + (StandardCost * 0.15))
+WHEN Color = 'Multi' THEN (StandardCost + (StandardCost * 0.05))
+WHEN Color = 'White' THEN ((StandardCost * 2) / SQRT(StandardCost))
+ELSE StandardCost END Margin
+FROM Production.Product;
+
+Request: Create a view to find out the top 5 most expensive products for each colour
+
+Query: CREATE VIEW top_5_expensive_products AS
+SELECT color, name Product, Price, Row_num
+FROM (
+SELECT color, name, ListPrice Price,
+ROW_NUMBER() OVER(PARTITION BY color ORDER BY ListPrice Desc) Row_num
+FROM Production.Product --used on builder
+) A
+WHERE Row_num <= 5;
+
+[Here is a pictorial representation of the report]()
+
+To view the actual report file, [click here]()
 
