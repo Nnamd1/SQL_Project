@@ -42,7 +42,7 @@ ORDER BY ListPrice DESC;
 
 [Here is a pictorial representation](Picture2.png) 
 
-[To view the actual report file, click here](Product_Info.rdl)
+To view the actual report file, [click here](Product_Info.rdl)
 
 ### Task 2: This consist of four unique queries in response to requests, in order to constitute the report called `Employee Details.`
 Request: Find all the male employees born between 1962 to 1970 and with hire date greater than 2001 and female employees
@@ -79,5 +79,5 @@ FROM HumanResources.Employee A
 INNER JOIN Person.Person B ON A.BusinessEntityID = B.BusinessEntityID;
 
 [Here is a pictorial representation of the report](Picture3.png)
-[To view the actual report file, click here]()
+To view the actual report file, [click here](Employee.rdl)
 
